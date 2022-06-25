@@ -1,11 +1,11 @@
 import express, { Request, Response } from 'express';
+import { Routes } from './routes';
 
 export class App {
-  private _app: express.Express;
+  private _app = express();
+  private routes = new Routes();
 
   constructor() {
-    this._app = express();
-
     this.config();
   }
 
@@ -15,8 +15,10 @@ export class App {
     _app.use(express.json());
 
     _app.get('/', (_req: Request, res: Response) =>
-      res.status(200).send('Everything is good'),
+      res.status(200).send('Hey you found me, i am a easteregg!'),
     );
+
+    _app.use(this.routes.init);
   }
 
   get app() {
