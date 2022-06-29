@@ -29,5 +29,7 @@ export class TaskRoute {
   private config() {
     this._route.get('/', this.taskController.getAllTasks);
     this._route.post('/', this.taskController.createTask);
+    this._route.put('/:id', this.taskController.updateTask);
+    this._route.delete('/:id', this.taskController.deleteTask);
   }
 }
